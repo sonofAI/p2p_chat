@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/49f81c9f0a.js" crossorigin="anonymous"></script>
+    <title>Room</title>
+</head>
+<body>
+    <h2>Room code: {{ code }}</h2>
+    <p>{{ name }}</p>
+    <div id="chat-box">
+        <div id="history"></div>
+
+        <div id="new-message">
+            <input type="text" name="new-mess-input" id="new-mess-input" placeholder="Type your message" autocomplete="off" autofocus>
+            <button id="send-btn" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var socketio = io();
+
+        const messages = document.getElementById("history");
+
+        const createMsg = (name, msg) => {
+            const content = `
+            <div class="text" title="${new Date().toLocaleString()}">
+                <span>
+                    <strong>${name}</strong>: ${msg}
+                </span>
+            </div>
+            `;
+            messages.innerHTML += content;
+        };
+
+        socketio.on("message", (data) => {
+            createMsg(data.name, data.message);
+        });
+
+        const sendMsg = () => {
+            const message = document.getElementById("new-mess-input");
+            if (message.value == "") {return;}
+            socketio.emit("message", {data: message.value});
+            message.value = "";
+            message.focus();
+        };
+    </script>
+
+    {% for msg in messages %}
+        <script type="text/javascript">
+            createMsg("{{ msg.name }}", "{{ msg.message }}");
+        </script>
+    {% endfor %}
+</body>
+</html>
