@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <title>p2p chat</title>
+</head>
+<body>
+    <h1>Hi :)</h1>
+    <h2>Welcome to p2p chat!</h2>
+
+    <form action="" method="post" id="join-room-form">
+        <input type="text" name="name" id="name" placeholder="Enter your name" autocomplete="off" autofocus>
+        <div id="join-existing-room">
+            <input type="text" name="room-code" id="room-code" placeholder="Room code" autocomplete="off">
+            <button name="join-btn" id="join-room-btn">Join room</button>
+        </div>
+        <button name="create-btn" id="create-room-btn">Create room</button>
+    </form>
+
+    {% if error_mess %}
+        <h3>{{ error_mess }}</h3>
+    {% endif %}
+</body>
+</html>
