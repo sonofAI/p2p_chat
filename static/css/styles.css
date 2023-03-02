@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: serif;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-color: #8C8B8C;
+}
+
+#join-room-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(181, 138, 181);
+}
+
+#name {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+#room-code {
+    font-size: 1.5rem;
+    width: 65%;
+}
+
+#join-room-btn {
+    font-size: 1.2rem;
+    width: 30%;
+    border: none;
+    border-radius: 5px;
+}
+
+#join-existing-room {
+    margin: 10px;
+}
+
+#create-room-btn {
+    font-size: 1.4rem;
+    padding: 2px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+#chat-box {
+    width: 80vw;
+    height: 80vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#history {
+    width: 80%;
+    height: 90%;
+    background-color: #262626;
+    color: white;
+    text-align: left;
+}
+
+.text {
+    margin: 10px 0;
+}
+
+#new-message {
+    width: 80%;
+}
+
+#new-mess-input {
+    width: 80%;
+    font-size: 1.3rem;
+}
+
+#send-btn {
+    width: 9%;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+
+@media (max-width: 576px) {
+    #chat-box {
+        width: 100vw;
+    }
+
+    #history {
+        width: 96%;
+    }
+
+    #new-message {
+        width: 100%;
+    }
+}
